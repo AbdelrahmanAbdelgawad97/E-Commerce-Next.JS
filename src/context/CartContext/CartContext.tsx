@@ -3,10 +3,22 @@
 // import { createContext } from "node:vm";
 import React, { useState,createContext } from "react";
 
-export const CartCreatedContext = createContext({cartCount:0, setCartCount : function(){}});
+type CartContextType = {
+  cartCount: number;
+  setCartCount: React.Dispatch<React.SetStateAction<number>>;
+};
 
-export default function CartContext({ children }: {children: React.ReactNode}) {
-  const [cartCount, setCartCount] = useState < number > (0);
+export const CartCreatedContext = createContext<CartContextType>({
+  cartCount: 0,
+  setCartCount: () => {},
+});
 
-  return <CartCreatedContext value={{cartCount, setCartCount}}>{children}</CartCreatedContext>;
+export default function CartContext({ children }: { children: React.ReactNode }) {
+  const [cartCount, setCartCount] = useState<number>(0);
+
+  return (
+    <CartCreatedContext.Provider value={{ cartCount, setCartCount }}>
+      {children}
+    </CartCreatedContext.Provider>
+  );
 }
