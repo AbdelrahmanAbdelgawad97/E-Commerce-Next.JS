@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { SearchX } from "lucide-react";
 
-export default function NotFoundProduct({directedPath,browse}) {
+export default function NotFoundProduct({directedPath,browse}:{directedPath:string,browse:string}) {
 
 
   return (

@@ -5,7 +5,28 @@ import NotFoundProduct from '@/components/NotFoundProduct/NotFoundProduct';
 import { Star } from 'lucide-react';
 import Image from 'next/image';
 
-export default async function page({params}:Promise<{category:string}>) {
+
+type ProductItem = {
+  _id: string;
+  title: string;
+  price: number;
+  imageCover: string;
+
+  ratingsAverage: number;
+  ratingsQuantity: number;
+
+  category: {
+    name: string;
+  };
+
+  brand: {
+    name: string;
+  };
+};
+
+
+
+export default async function page({params}: {params: { category: string }}) {
   const {category} = await params;
 
   const finalData = await getCategoryDetails(category);
@@ -21,9 +42,8 @@ return (
       {!finalData || finalData.length === 0 ? (
         <NotFoundProduct directedPath={'/category'} browse="Category" />
       ) : (
-        finalData.map((item) => {
+        finalData.map((item:ProductItem) => {
 
-          // ✅ هنا الـ destructuring الحقيقي
           const {
             _id,
             title,

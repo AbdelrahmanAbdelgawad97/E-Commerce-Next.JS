@@ -6,7 +6,7 @@ export async function getAllCategory(): Promise<AllCategoryData[]> {
     return data.data
 }
 
-export async function getCategoryDetails(id) {
+export async function getCategoryDetails(id:string) {
     const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/products?category=${id}`);
     const {data} = await response.json();
 

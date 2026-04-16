@@ -4,7 +4,7 @@ import AddToCart from "@/components/AddToCart/AddToCart";
 import AppButtons from "@/components/Shared/AppButtons/AppButtons";
 import { Star } from "lucide-react";
 
-export default async function page({ params }:Promise<{params:{hamada:string}}>) {
+export default async function page({ params }:{params:{hamada:string}}) {
   const {hamada} = await params;
 
   const productDetails = await getSpecificProduct(hamada);

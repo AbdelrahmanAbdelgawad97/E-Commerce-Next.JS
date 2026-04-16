@@ -14,8 +14,6 @@ export async function handleAddProductToCart(data:productCartId) {
         body: JSON.stringify(data), 
     })
 
-    console.log("id is ======>" , data)
-
     const responseData = await response.json();
     revalidatePath('/cart'); // when changes are happen in page /cart make a fetch for api in /cart page
 

@@ -3,11 +3,30 @@ import AppButtons from '@/components/Shared/AppButtons/AppButtons';
 import { Star } from 'lucide-react';
 import Image from 'next/image';
 import React from 'react'
-import SpecificProductBrand from '../SpecificProductBrand';
 import NotFoundProduct from '@/components/NotFoundProduct/NotFoundProduct';
 import { getUserToken } from '@/app/myUtil';
 
-export default async function page({params}) {
+
+type Product = {
+  _id: string;
+  title: string;
+  imageCover: string;
+  price: number;
+  ratingsAverage: number;
+  ratingsQuantity: number;
+
+  category: {
+    name: string;
+  };
+
+  brand: {
+    name: string;
+  };
+};
+
+
+
+export default async function page({params,}: {params: { brandDetails: string }}) {
     const {brandDetails} = await params;
 
     const productDetails = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/products?brand=${brandDetails}`,{
@@ -22,7 +41,7 @@ export default async function page({params}) {
   
       <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
 
-        {!data || data.length === 0 ? <NotFoundProduct directedPath={'/brands'} browse="Brand" /> : data.map((e) => (
+        {!data || data.length === 0 ? <NotFoundProduct directedPath={'/brands'} browse="Brand" /> : data.map((e:Product) => (
           <div
             key={e._id}
             className="group hover:-translate-y-2 bg-white rounded-2xl shadow-[0_0_10px_rgba(0,0,0,0.2)] hover:shadow-[0_0_15px_rgba(0,0,0,0.25)] cursor-pointer transition duration-300 overflow-hidden "

@@ -13,6 +13,29 @@ import {
 } from "@/components/ui/table"
 import Link from "next/link";
 import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal, Key } from "react";
+
+
+type CartProduct = {
+  _id: string;
+  count: number;
+  price: number;
+  product: {
+    _id: string;
+    title: string;
+    imageCover: string;
+  };
+};
+
+type Cart = {
+  totalCartPrice: number;
+  products: CartProduct[];
+};
+
+type GetUserCartResponse = {
+  data: Cart;
+  numOfCartItems: number;
+};
+
 export default async function page() {
 
   const products = await getUserCart();
@@ -42,7 +65,7 @@ export default async function page() {
           </TableHeader>
           <TableBody>
             {products?.data?.products?.length > 0 ? (
-              products.data.products.map((item) => (
+              products.data.products.map((item:CartProduct) => (
                 <TableRow key={item._id}>
                   {/* Product Image */}
                   <TableCell>

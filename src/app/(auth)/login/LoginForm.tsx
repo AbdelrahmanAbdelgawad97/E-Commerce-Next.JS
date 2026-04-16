@@ -14,6 +14,11 @@ import { Button } from "@/components/ui/button"
 import gLogo from "@images/g-logo.png";
 import Image from 'next/image'
 
+type LoginData = {
+  email: string;
+  password: string;
+};
+
 export default function LoginForm() {
 
     const router = useRouter();
@@ -26,7 +31,7 @@ export default function LoginForm() {
         resolver: zodResolver(schema),
     })
 
-    async function hamadaLogin (data) {
+    async function hamadaLogin (data:LoginData) {
         // const signInResponse = await signIn("credentials",{...data, redirect: true, callbackUrl: '/'})
         // console.log(signInResponse);
         toast.promise(signIn("credentials",{...data, redirect: false}),{
