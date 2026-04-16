@@ -1,6 +1,5 @@
 import { AllProductData } from "@/app/home.interface"
 import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
 import {
   Card,
   CardAction,
@@ -11,10 +10,8 @@ import {
 } from "@/components/ui/card"
 import { Star } from "lucide-react"
 import Image from "next/image"
-import AppButtons from './../../Shared/AppButtons/AppButtons';
 import Link from "next/link"
 import AddToCart from "@/components/AddToCart/AddToCart"
-import { getUserToken } from "@/app/myUtil"
 
 export default function ProductCard({prod}:{prod:AllProductData}) {
   const {category,imageCover,id, price,quantity,ratingsAverage, ratingsQuantity, title, priceAfterDiscount} =prod

@@ -19,8 +19,6 @@ export async function handleUserRegister(userData:userDataTypes): Promise<string
             sameSite: "strict",
         });
 
-        console.log(cookie.get("tkn").value);
-
         if(data.message === "success")
             return true
         else
