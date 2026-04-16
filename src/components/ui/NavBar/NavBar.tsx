@@ -66,11 +66,17 @@ export default function NavigationMenuDemo() {
   const {data} = useSession();
   const router = useRouter()
 
-  React.useEffect(function(){
-    setCartCount(getUserCart().then(function(data) {
-      return data.numOfCartItems;
-    }));
-  },[])
+  // React.useEffect(function(){
+  //   setCartCount(getUserCart().then(function(data) {
+  //     return data.numOfCartItems;
+  //   }));
+  // },[])
+
+  React.useEffect(() => {
+  getUserCart().then((data) => {
+    setCartCount(data.numOfCartItems);
+  });
+}, []);
 
   async function handleLogOut() {
     await signOut({redirect:false});
