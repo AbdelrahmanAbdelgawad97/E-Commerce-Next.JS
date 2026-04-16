@@ -103,7 +103,7 @@ export default function NavigationMenuDemo() {
               <span className="capitalize text-main-color">
                 {data?.user?.name}
               </span>
-              <button onClick={handleLogOut} className="flex items-center gap-1">
+              <button onClick={handleLogOut} className="flex items-center gap-1 cursor-pointer">
                 LogOut <LogOut />
               </button>
             </div>

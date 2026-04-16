@@ -27,7 +27,7 @@ export default function PaymentForm({cartId}:{cartId:string}) {
 
     function creteCashOrder(data:UserShippingAddress) {
 
-        const shippingAddress:ShippingAddressType = {shippingAddress:data}
+        const shippingAddress:ShippingAddressType = {UserShippingAddress:data}
 
         toast.promise(handleCashOrder(shippingAddress,cartId),{
             loading: "Creating Cash Order Please Wait!",
@@ -41,7 +41,7 @@ export default function PaymentForm({cartId}:{cartId:string}) {
 
     async function creteOnlineOrder(data:UserShippingAddress) {
 
-        const shippingAddress:ShippingAddressType = {shippingAddress:data}
+        const shippingAddress:ShippingAddressType = {UserShippingAddress:data}
         const url = await handleOnlineOrder(shippingAddress,cartId);
         window.open(url,"_self");
         // toast.promise(handleCashOrder(shippingAddress,cartId),{
