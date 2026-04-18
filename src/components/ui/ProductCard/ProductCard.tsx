@@ -12,9 +12,13 @@ import { Star } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import AddToCart from "@/components/AddToCart/AddToCart"
+import { getUserToken } from "@/app/myUtil"
+import RedirectTo from "@/components/Shared/AppButtons/RedirectTo"
 
-export default function ProductCard({prod}:{prod:AllProductData}) {
+export default async function ProductCard({prod}:{prod:AllProductData}) {
   const {category,imageCover,id, price,quantity,ratingsAverage, ratingsQuantity, title, priceAfterDiscount} =prod
+
+  const userToken = await getUserToken();
 
     return (
     
@@ -58,7 +62,7 @@ export default function ProductCard({prod}:{prod:AllProductData}) {
         </CardHeader>
     </Link>
         <CardFooter>
-          <AddToCart id={id}/>
+          {userToken ? <AddToCart id={id}/> : <RedirectTo />} 
         </CardFooter>
       </Card>
   )

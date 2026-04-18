@@ -1,6 +1,7 @@
 import { getSpecificProduct } from "@/app/home.services";
 import { getUserToken } from "@/app/myUtil";
 import AddToCart from "@/components/AddToCart/AddToCart";
+import RedirectTo from "@/components/Shared/AppButtons/RedirectTo";
 import { Star } from "lucide-react";
 
 type ProductDetails = {
@@ -137,11 +138,7 @@ export default async function page({params}: {params: { hamada: string }}) {
           </div>
 
           {/* Button */}
-          {!!userToken && (
-            <div className="mt-4">
-              <AddToCart id={hamada} />
-            </div>
-          )}
+          {userToken ? <AddToCart id={hamada} /> : <RedirectTo />}
 
         </div>
       </div>

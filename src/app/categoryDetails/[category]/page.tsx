@@ -2,6 +2,7 @@ import { getCategoryDetails } from '@/app/category/category.services';
 import { getUserToken } from '@/app/myUtil';
 import AddToCart from '@/components/AddToCart/AddToCart';
 import NotFoundProduct from '@/components/NotFoundProduct/NotFoundProduct';
+import RedirectTo from '@/components/Shared/AppButtons/RedirectTo';
 import { Star } from 'lucide-react';
 import Image from 'next/image';
 
@@ -117,7 +118,7 @@ export default async function page({params}: {params: { category: string }}) {
                   </div>
 
                   {/* Button */}
-                  {!!userToken && <AddToCart id={_id} />}
+                  {userToken ? <AddToCart id={_id} /> : <RedirectTo />}
                 </div>
               </div>
             );

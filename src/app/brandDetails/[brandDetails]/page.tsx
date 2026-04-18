@@ -5,6 +5,7 @@ import Image from 'next/image';
 import React from 'react'
 import NotFoundProduct from '@/components/NotFoundProduct/NotFoundProduct';
 import { getUserToken } from '@/app/myUtil';
+import RedirectTo from '@/components/Shared/AppButtons/RedirectTo';
 
 
 type Product = {
@@ -100,7 +101,7 @@ export default async function page({params,}: {params: { brandDetails: string }}
                 </span>
               </div>
 
-              {userToken ? <AddToCart id={e._id} /> : null}
+              {userToken ? <AddToCart id={e._id} /> : <RedirectTo />}
             </div>
           </div>
         ))
